@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salesforce Chat Test on GitHub Pages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Salesforce Chat Test</h1>
+        <p>右下にチャットボタンが表示されるか確認してください。</p>
+    </div>
+
+    <script type='text/javascript'>
+        function initEmbeddedMessaging() {
+            try {
+                embeddedservice_bootstrap.settings.language = 'ja';
+                embeddedservice_bootstrap.init(
+                    '00DIk000000LPOa',
+                    'User_Verification_Agent_Channel_V1_Ext',
+                    'https://aflacjpx--fsccoedev9.sandbox.my.site.com/ESWUserVerificationAgen1769654872715',
+                    {
+                        scrt2URL: 'https://aflacjpx--fsccoedev9.sandbox.my.salesforce-scrt.com'
+                    }
+                );
+            } catch (err) {
+                console.error('Error loading Embedded Messaging: ', err);
+            }
+        };
+    </script>
+    <script type='text/javascript' src='https://aflacjpx--fsccoedev9.sandbox.my.site.com/ESWUserVerificationAgen1769654872715/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+</body>
+</html>
