@@ -29,22 +29,23 @@
     </div>
 
     <script type='text/javascript'>
-        function initEmbeddedMessaging() {
-            try {
-                embeddedservice_bootstrap.settings.language = 'ja';
-                embeddedservice_bootstrap.init(
-                    '00DIk000000LPOa',
-                    'User_Verification_Agent_Channel_V1_Ext',
-                    'https://aflacjpx--fsccoedev9.sandbox.my.site.com/ESWUserVerificationAgen1769654872715',
-                    {
-                        scrt2URL: 'https://aflacjpx--fsccoedev9.sandbox.my.salesforce-scrt.com'
-                    }
-                );
-            } catch (err) {
-                console.error('Error loading Embedded Messaging: ', err);
-            }
-        };
+    	function initEmbeddedMessaging() {
+    		try {
+    			embeddedservice_bootstrap.settings.language = 'ja'; // For example, enter 'en' or 'en-US'
+    
+    			embeddedservice_bootstrap.init(
+    				'00DIk000000LPOa',
+    				'User_Verification_Agent_Channel_V1_Ext2',
+    				'https://aflacjpx--fsccoedev9.sandbox.my.site.com/ESWUserVerificationAgen1769664442602',
+    				{
+    					scrt2URL: 'https://aflacjpx--fsccoedev9.sandbox.my.salesforce-scrt.com'
+    				}
+    			);
+    		} catch (err) {
+    			console.error('Error loading Embedded Messaging: ', err);
+    		}
+    	};
     </script>
-    <script type='text/javascript' src='https://aflacjpx--fsccoedev9.sandbox.my.site.com/ESWUserVerificationAgen1769654872715/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+    <script type='text/javascript' src='https://aflacjpx--fsccoedev9.sandbox.my.site.com/ESWUserVerificationAgen1769664442602/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 </body>
 </html>
