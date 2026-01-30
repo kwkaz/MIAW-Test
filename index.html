@@ -3,53 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Chat Test on GitHub Pages</title>
+    <title>Scrollable Background Test</title>
     <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        /* align-items: center; を外す（上端から表示させるため） */
-        padding-top: 10vh; /* コンテナを少し下に配置するための余白 */
-        
-        /* --- 背景設定の変更箇所 --- */
-        background-image: url('aanetbg.jpeg');
-        
-        /* 横幅を100%にし、高さは画像比率に合わせる */
-        background-size: 100% auto;
-        
-        /* 画像の上端を基準にする */
-        background-position: top center;
-        
-        background-repeat: no-repeat;
-        background-color: #f4f4f9;
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            /* 上端から少し下げて配置 */
+            padding-top: 50px; 
+            
+            /* 背景設定 */
+            background-image: url('aanetbg.jpeg');
+            background-size: 100% auto; /* 横幅100%、高さは自動 */
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-color: #f4f4f9;
+            
+            /* 背景を固定せず、スクロールと一緒に動かす */
+            background-attachment: scroll; 
+        }
 
-        /* 重要：画面の高さに固定せず、中身（画像）に応じてスクロールできるようにする */
-        min-height: 100vh; 
-    }
-
-    .container {
-        text-align: center;
-        padding: 2rem;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        
-        /* スクロールを確認しやすくするために位置を調整 */
-        z-index: 1;
-        max-width: 80%;
-    }
-</style>
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 80%;
+            max-width: 400px;
+            z-index: 10;
+        }
+    </style>
 </head>
 <body>
 
+    <div class="container">
+        <h2>Background Scroll Test</h2>
+        <p>画像の下までスクロールできるよう調整しました。</p>
+    </div>
+
     <script type='text/javascript'>
+        // 背景画像の高さに合わせてbodyの高さを自動調整するスクリプト
+        function adjustHeight() {
+            const img = new Image();
+            img.src = 'aanetbg.jpeg';
+            img.onload = function() {
+                // 画面幅に対する画像の比率から、表示されるべき高さを計算
+                const displayHeight = (window.innerWidth / img.width) * img.height;
+                document.body.style.height = displayHeight + 'px';
+            };
+        }
+
+        // 読み込み時と画面サイズ変更時に実行
+        window.onload = adjustHeight;
+        window.onresize = adjustHeight;
+
+        // Salesforce Embedded Messaging の設定（そのまま）
         function initEmbeddedMessaging() {
             try {
                 embeddedservice_bootstrap.settings.language = 'ja'; 
-    
                 embeddedservice_bootstrap.init(
                     '00DIk000000LPOa',
                     'User_Verification_Agent_Channel_V1_Ext2',
@@ -61,6 +75,20 @@
             } catch (err) {
                 console.error('Error loading Embedded Messaging: ', err);
             }
+
+            window.addEventListener("onEmbeddedMessagingReady", () => {
+
+             console.log("Received the onEmbeddedMessagingReady event.");
+            
+             var AuthTOKEN = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImhTY3BFQW5VLTZZZDlGQld2UWlqd2pZbkczRmFsZUpCZ2NtcUZsYzdmVHciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FmbGFjanB4LS1mc2Njb2VkZXY5LnNhbmRib3gubXkuc2l0ZS5jb20vIiwic3ViIjoiMTIzNDUiLCJhdWQiOiJodHRwczovL2FmbGFjanB4LS1mc2Njb2VkZXY5LnNhbmRib3gubXkuc2l0ZS5jb20vIiwiaWF0IjoxNzM1NTM2MDUzLCJleHAiOjE3OTg1NjY2MjR9.TKijGHYiCFLUKv7KjVPAHAiD7Nrj1Wcml6jaYIY0rUzq8p4MxVJE1E7Ou0yRLux81RZcvux1do5bf-iYPh4-vm68LJRrns-y844WoKPy14kkpzvq2Ay3oI4nF-dt_ZxdVANsskmFYyHzEs3rsc2BoS_KsqDzanx8rRxNjtPUnKFaYm00iX9GOGzvVfDdr9KyRUpmOCAwWTP5tiIlPQNuj9rafVS19UqlAuYf6ogBX8QkmGe-7Lqh5OIjzh1V52c1F3nSnbIkT9eVRRjKeI_4O-_SIhrIDmqeG5CWrQDgZYmA3XjTsiyXf_5sieSLms_W9o7CfUESLHrHT3UBBg1F2g";
+            
+             embeddedservice_bootstrap.userVerificationAPI.setIdentityToken({
+            
+               identityTokenType: "JWT",
+            
+               identityToken: AuthTOKEN,
+        
+             });
         };
     </script>
     <script type='text/javascript' src='https://aflacjpx--fsccoedev9.sandbox.my.site.com/ESWUserVerificationAgen1769664442602/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
