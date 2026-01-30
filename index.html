@@ -11,12 +11,29 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            
+            /* --- 背景設定の変更箇所 --- */
+            
+            /* 背景画像のURLを指定 (例: 'background.jpg' や 'https://example.com/img.png') */
+            background-image: url('background.png');
+            
+            /* 画像を画面全体に覆うように表示 */
+            background-size: cover;
+            
+            /* 画像の中心を基準に表示 */
+            background-position: center;
+            
+            /* 画像を繰り返さない */
+            background-repeat: no-repeat;
+            
+            /* 画像が読み込まれない場合のフォールバック色 */
             background-color: #f4f4f9;
         }
         .container {
             text-align: center;
             padding: 2rem;
-            background: white;
+            /* 背景画像の上でも文字が読めるよう、コンテナは白背景のままにします */
+            background: rgba(255, 255, 255, 0.9); /* 少し透過させるとおしゃれです (0.9) */
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
@@ -24,26 +41,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>Enhanced Chat Test</h1>
     </div>
 
     <script type='text/javascript'>
-    	function initEmbeddedMessaging() {
-    		try {
-    			embeddedservice_bootstrap.settings.language = 'ja'; // For example, enter 'en' or 'en-US'
+        function initEmbeddedMessaging() {
+            try {
+                embeddedservice_bootstrap.settings.language = 'ja'; 
     
-    			embeddedservice_bootstrap.init(
-    				'00DIk000000LPOa',
-    				'User_Verification_Agent_Channel_V1_Ext2',
-    				'https://aflacjpx--fsccoedev9.sandbox.my.site.com/ESWUserVerificationAgen1769664442602',
-    				{
-    					scrt2URL: 'https://aflacjpx--fsccoedev9.sandbox.my.salesforce-scrt.com'
-    				}
-    			);
-    		} catch (err) {
-    			console.error('Error loading Embedded Messaging: ', err);
-    		}
-    	};
+                embeddedservice_bootstrap.init(
+                    '00DIk000000LPOa',
+                    'User_Verification_Agent_Channel_V1_Ext2',
+                    'https://aflacjpx--fsccoedev9.sandbox.my.site.com/ESWUserVerificationAgen1769664442602',
+                    {
+                        scrt2URL: 'https://aflacjpx--fsccoedev9.sandbox.my.salesforce-scrt.com'
+                    }
+                );
+            } catch (err) {
+                console.error('Error loading Embedded Messaging: ', err);
+            }
+        };
     </script>
     <script type='text/javascript' src='https://aflacjpx--fsccoedev9.sandbox.my.site.com/ESWUserVerificationAgen1769664442602/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 </body>
